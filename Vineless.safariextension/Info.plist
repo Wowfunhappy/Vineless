@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Author</key>
+	<string>Ingan121</string>
+	<key>Builder Version</key>
+	<string>9537.78.2</string>
+	<key>CFBundleDisplayName</key>
+	<string>Vineless</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.ingan121.vineless.safari</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleShortVersionString</key>
+	<string>2.2</string>
+	<key>CFBundleVersion</key>
+	<string>2.2</string>
+	<key>Chrome</key>
+	<dict>
+		<key>Global Page</key>
+		<string>global.html</string>
+		<key>Popovers</key>
+		<array>
+			<dict>
+				<key>Filename</key>
+				<string>pages/panel/panel.html</string>
+				<key>Height</key>
+				<real>600</real>
+				<key>Identifier</key>
+				<string>vineless-popover</string>
+				<key>Width</key>
+				<real>420</real>
+			</dict>
+		</array>
+		<key>Toolbar Items</key>
+		<array>
+			<dict>
+				<key>Identifier</key>
+				<string>vineless-button</string>
+				<key>Image</key>
+				<string>images/icon.png</string>
+				<key>Label</key>
+				<string>Vineless</string>
+				<key>Popover</key>
+				<string>vineless-popover</string>
+				<key>ToolTip</key>
+				<string>Vineless</string>
+			</dict>
+		</array>
+	</dict>
+	<key>Content</key>
+	<dict>
+		<key>Scripts</key>
+		<dict>
+			<key>Start</key>
+			<array>
+				<string>message_proxy.js</string>
+			</array>
+		</dict>
+	</dict>
+	<key>Description</key>
+	<string>Play protected contents without a real CDM</string>
+	<key>DisplayName</key>
+	<string>Vineless</string>
+	<key>ExtensionInfoDictionaryVersion</key>
+	<string>1.0</string>
+	<key>Identifier</key>
+	<string>com.ingan121.vineless.safari</string>
+	<key>Permissions</key>
+	<dict>
+		<key>Website Access</key>
+		<dict>
+			<key>Include Secure Pages</key>
+			<true/>
+			<key>Level</key>
+			<string>All</string>
+		</dict>
+	</dict>
+	<key>Version</key>
+	<string>2.2</string>
+</dict>
+</plist>

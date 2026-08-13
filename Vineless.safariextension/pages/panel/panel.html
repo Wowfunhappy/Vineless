@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Vineless Panel UI</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../../safari/shim.js"></script>
+    <script src="../../import.bundle.js" defer></script>
+    <script src="panel.bundle.js" defer></script>
+    <link rel="stylesheet" href="panel.css">
+</head>
+<body style="min-width: 200px;">
+    <div class="header">
+        <img id="icon" src="../../images/icon.png" alt="Vineless Icon" width="64"/>
+        <div class="header-right">
+            <h1>Vineless</h1>
+            Made by Ingan121 - <a href="https://www.ingan121.com/" target="_blank">www.ingan121.com</a><br>
+            Based on <a href="https://github.com/DevLARLEY/WidevineProxy2" target="_blank">WidevineProxy2</a> and <a href="https://github.com/DevLARLEY/PlayreadyProxy2/tree/f4965f809dbea1a309e1fd50c072f50bf08fb03c" target="_blank">PlayreadyProxy2</a>
+        </div>
+        <p id="version">v1.x</p>
+    </div>
+    <fieldset id="settings">
+        <legend>Settings</legend>
+        <div>
+            <input type="checkbox" id="enabled">
+            <label for="enabled">Enabled</label>
+        </div>
+        <div id="scopeToggleArea">
+            <label id="globalScopeLabel" class="scopeLabel">Global</label>
+            <label class="switch">
+                <input type="checkbox" id="scopeToggle">
+                <span class="slider"></span>
+            </label>
+            <div id="siteScopeArea">
+                <label id="siteScopeLabel" class="scopeLabel" title="Click this to manage profile for other sites">This site</label>
+                <input id="scopeInput" type="text">
+            </div>
+        </div>
+        <button id="reload" class="hidden">Reload tab</button>
+    </fieldset>
+    <details id="main" class="collapsible-section" data-wv-type="local" data-pr-type="local">
+        <summary id="main-summary">Systems & Devices</summary>
+        <fieldset id="systems">
+            <legend>Systems</legend>
+            <div class="flex">
+                <input type="checkbox" id="wvEnabled" name="wvEnabled" checked>
+                <label for="wvEnabled">Widevine</label>
+                <input type="radio" id="wvdSelect" name="cdmType" value="local" checked>
+                <label for="wvdSelect">Local</label>
+                <input type="radio" id="remoteSelect" name="cdmType" value="remote">
+                <label for="remoteSelect">Remote</label>
+                <input type="radio" id="customSelect" name="cdmType" value="custom" class="hidden">
+                <label for="customSelect">Custom</label>
+            </div>
+            <div>
+                <input type="checkbox" id="prEnabled" name="prEnabled" checked>
+                <label for="prEnabled">PlayReady</label>
+                <input type="radio" id="prdSelect" name="prCdmType" value="local" checked>
+                <label for="prdSelect">Local</label>
+                <input type="radio" id="prRemoteSelect" name="prCdmType" value="remote">
+                <label for="prRemoteSelect">Remote</label>
+                <input type="radio" id="prCustomSelect" name="prCdmType" value="custom" class="hidden">
+                <label for="prCustomSelect">Custom</label>
+            </div>
+            <div id="systemsBottomArea">
+                <div>
+                    <input type="checkbox" id="ckEnabled" name="ckEnabled" checked>
+                    <label for="ckEnabled">ClearKey</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="blockDisabled" name="blockDisabled">
+                    <label for="blockDisabled">Block disabled systems</label>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset id="wvd" class="device-fieldset">
+            <legend>Widevine Local</legend>
+            <button type="button" id="fileInput">Choose File</button>
+            <button type="button" id="remove" disabled>Remove</button>
+            <button type="button" id="download" disabled>Export</button><br>
+            <select id="wvd-combobox"></select>
+        </fieldset>
+        <fieldset id="remote" class="device-fieldset">
+            <legend>Widevine Remote</legend>
+            <button type="button" id="remoteInput">Choose File</button>
+            <button type="button" id="remoteRemove" disabled>Remove</button>
+            <button type="button" id="remoteDownload" disabled>Export</button><br>
+            <select id="remote-combobox"></select>
+        </fieldset>
+        <fieldset id="custom">
+            <legend>Widevine Custom</legend>
+            <select id="custom-combobox"></select>
+            <p id="custom-desc"></p>
+        </fieldset>
+        <fieldset id="prd" class="device-fieldset">
+            <legend>PlayReady Local</legend>
+            <button type="button" id="prdInput">Choose File</button>
+            <button type="button" id="prdRemove" disabled>Remove</button>
+            <button type="button" id="prdDownload" disabled>Export</button><br>
+            <select id="prd-combobox"></select>
+        </fieldset>
+        <fieldset id="pr-remote" class="device-fieldset">
+            <legend>PlayReady Remote</legend>
+            <button type="button" id="prRemoteInput">Choose File</button>
+            <button type="button" id="prRemoteRemove" disabled>Remove</button>
+            <button type="button" id="prRemoteDownload" disabled>Export</button><br>
+            <select id="pr-remote-combobox"></select>
+        </fieldset>
+        <fieldset id="pr-custom">
+            <legend>PlayReady Custom</legend>
+            <select id="pr-custom-combobox"></select>
+            <p id="pr-custom-desc"></p>
+        </fieldset>
+    </details>
+    <details id="command-options" class="collapsible-section">
+        <summary>Command Options</summary>
+        <fieldset>
+            <legend>Command Options</legend>
+            <div id="decryption-engine-group">
+                <label>Decryption Engine:</label>
+                <select id="decryption-engine-select">
+                    <option value="SHAKA_PACKAGER">Shaka Packager</option>
+                    <option value="MP4DECRYPT">mp4decrypt</option>
+                    <option value="FFMPEG">FFmpeg</option>
+                </select>
+            </div>
+            <div>
+                <label>Muxer:</label>
+                <select id="muxer-select">
+                    <option value="ffmpeg">ffmpeg</option>
+                    <option value="mkvmerge">mkvmerge</option>
+                </select>
+                <label>Format:</label>
+                <select id="format-select">
+                    <option value="mp4">mp4</option>
+                    <option value="mkv">mkv</option>
+                    <option value="ts">ts</option>
+                </select>
+            </div>
+            <div>
+                <label>Video Stream:</label>
+                <select id="video-stream-select">
+                    <option value="best">Best available video</option>
+                    <option value="1080">1080p video</option>
+                </select>
+            </div>
+            <div>
+                <label>Audio & Subtitle Streams:</label><br>
+                <input type="checkbox" id="audio-all">
+                <label for="audio-all">All audio tracks</label>
+                <input type="checkbox" id="subs-all">
+                <label for="subs-all">All subtitle tracks</label>
+            </div>
+            <label for="downloader-name">Executable name: </label>
+            <input type="text" class="text-box" id="downloader-name">
+        </fieldset>
+    </details>
+    <details id="advanced" class="collapsible-section">
+        <summary>Advanced Options</summary>
+        <fieldset>
+            <legend>Advanced Options</legend>
+            <div>
+                <label>Widevine server certificate usage:</label>
+                <select id="wv-server-cert">
+                    <option value="always">Always</option>
+                    <option value="if_provided" selected>If Provided</option>
+                    <option value="never">Never</option>
+                </select>
+            </div>
+            <div>
+                <label title="This option is not related to the selected Widevine device's security level.">Max Widevine robustness:</label>
+                <select id="max-robustness" title="This option is not related to the selected Widevine device's security level.">
+                    <option value="none">None (L3)</option>
+                    <option value="SW_SECURE_CRYPTO">SW_SECURE_CRYPTO (L3)</option>
+                    <option value="SW_SECURE_DECODE">SW_SECURE_DECODE (L3)</option>
+                    <option value="HW_SECURE_CRYPTO">HW_SECURE_CRYPTO (L2)</option>
+                    <option value="HW_SECURE_DECODE">HW_SECURE_DECODE (L1)</option>
+                    <option value="HW_SECURE_ALL" selected>HW_SECURE_ALL (L1)</option>
+                </select>
+            </div>
+            <div>
+                <label>Max HDCP level:</label>
+                <input type="range" id="max-hdcp" min="0" max="9" value="9">
+                <span id="max-hdcp-label">2.3</span>
+            </div>
+            <div>
+                <input type="checkbox" id="allowSL3K" name="allowSL3K" checked>
+                <label for="allowSL3K" title="This option is not related to the selected PlayReady device's security level.">Allow PlayReady SL3000 key systems</label>
+            </div>
+            <div>
+                <input type="checkbox" id="allowPersistence" name="allowPersistence">
+                <label for="allowPersistence">Allow persistent licenses</label>
+            </div>
+        </fieldset>
+    </details>
+    <fieldset>
+        <legend id="keysLabel">Keys</legend>
+        <div id="keyButtons">
+            <button type="button" id="export">Export</button>
+            <button type="button" id="clear">Clear</button>
+        </div>
+        <div id="key-container"></div>
+    </fieldset>
+    <div id="overlay">
+        <p id="overlayMessage">Checking browser compatibility...</p>
+    </div>
+</body>
+</html>

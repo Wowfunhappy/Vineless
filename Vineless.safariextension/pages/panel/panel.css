@@ -1,0 +1,312 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: black;
+    width: 400px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    user-select: none;
+    font-size: 13px;
+}
+.toggleButton {
+    width: 24px;
+}
+.text-box {
+    outline: none;
+    width: 80%;
+    user-select: auto;
+}
+#downloader-name {
+    width: 160px;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Switch */
+#scopeToggleArea {
+    margin-left: 10px;
+    display: flex;
+    gap: 4px;
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.scopeLabel {
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    direction: rtl;
+    height: 15px;
+}
+#siteScopeArea {
+    position: relative;
+}
+#siteScopeLabel {
+    cursor: pointer;
+}
+#scopeInput {
+    position: absolute;
+    width: 120px;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+#reload {
+    margin-left: auto;
+}
+#reload.hidden {
+    visibility: hidden;
+}
+
+/* Slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 20px;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+}
+input:checked + .slider {
+    background-color: #2196F3 !important;
+}
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+input:disabled + .slider {
+    opacity: 0.5;
+    cursor: default;
+}
+
+input.hidden:not(:checked),
+input.hidden:not(:checked) + label {
+    display: none;
+}
+
+#keyButtons {
+    width: 100%;
+    display: flex;
+    margin-bottom: 3px;
+    gap: 5px;
+}
+#keyButtons > button {
+    flex: 1;
+}
+
+#system > div {
+    display: flex;
+}
+
+#settings {
+    display: flex;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header > * {
+    margin: 5px;
+}
+h1 {
+    margin: 0;
+    font-size: 28px;
+}
+.header-right {
+    font-size: 11px;
+}
+#version {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#systemsBottomArea {
+    display: flex;
+    gap: 5px;
+}
+
+#wv-server-cert,
+#max-robustness {
+    margin-top: 2px;
+}
+
+#wvd, #remote, #custom, #prd, #pr-remote, #pr-custom {
+    display: none;
+}
+
+#main[data-wv-type="local"] #wvd {
+    display: block;
+}
+#main[data-wv-type="remote"] #remote {
+    display: block;
+}
+#main[data-wv-type="custom"] #custom {
+    display: block;
+}
+#main[data-pr-type="local"] #prd {
+    display: block;
+}
+#main[data-pr-type="remote"] #pr-remote {
+    display: block;
+}
+#main[data-pr-type="custom"] #pr-custom {
+    display: block;
+}
+
+.device-fieldset button {
+    margin-right: 5px;
+}
+
+.device-fieldset select {
+    margin-top: 5px;
+}
+
+p[id*="custom-desc"] {
+    margin: 0;
+    margin-top: 5px;
+}
+
+select[id*="-combobox"] {
+    width: 100%;
+}
+
+#command-options fieldset > div {
+    margin-bottom: 5px;
+}
+
+.log-container {
+    display: flex;
+    justify-content: center;
+}
+.right-bound {
+    text-align: right;
+}
+.expandableDiv {
+    width: 100%;
+    overflow: hidden;
+    background-color: lightblue;
+    padding: 0;
+    position: relative;
+}
+.expandableDiv.expanded {
+    padding: 5px;
+}
+.expandableDiv.collapsed {
+    padding: 0;
+}
+.always-visible {
+    display: block;
+}
+.expanded-only {
+    display: none;
+}
+.expandableDiv.expanded .expanded-only {
+    display: block;
+}
+.removeButton {
+    position: absolute;
+    top: 5px;
+    left: 7px;
+}
+
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+#overlayMessage {
+    margin: 30px;
+}
+/* ...Shrink Settings Menu... */
+.collapsible-section[open] {
+    opacity: 1;
+    pointer-events: auto;
+    filter: none;
+}
+.collapsible-section:not([open]) {
+    opacity: 0.5;
+    pointer-events: none;
+}
+.collapsible-section > summary {
+    cursor: pointer;
+    font-weight: bold;
+    background: #eee;
+    padding: 4px 8px;
+    border-radius: 4px;
+    outline: none;
+}
+.collapsible-section:not([open]) > summary {
+    opacity: 1;
+    pointer-events: auto;
+    filter: none;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1b1b1b;
+        color: #d5d5d5;
+    }
+    a {
+        color: dodgerblue;
+    }
+    fieldset {
+        border-color: #535353;
+    }
+    input, button, select {
+        color-scheme: dark;
+    }
+    option {
+        color: #d5d5d5;
+    }
+    .expandableDiv {
+        background-color: #1b2027;
+    }
+    .slider {
+        background-color: gray !important;
+    }
+    .collapsible-section > summary {
+        background: #23272e;
+        color: #ffffff;
+    }
+}
